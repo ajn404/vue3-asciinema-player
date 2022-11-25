@@ -9,14 +9,15 @@ const themeList = ["asciinema","monokai","tango","solarized-dark","solarized-lig
 const theme = themeList[Math.floor(Math.random()*10%themeList.length)]
 
 const props =defineProps({
-    file:String,
-    loop:Boolean
+    file:String,//请求地址或者压缩cast文件
+    loop:Boolean,//是否循环
+    theme:String,
 })
 nextTick(() => {
-    AsciinemaPlayer.create(props.file||'data:text/plain;base64,eyJ2ZXJzaW9uIjogMiwgIndpZHRoIjogODAsICJoZWlnaHQiOiAyNH0KWzAuMSwgIm8iLCAiaGVsbCJdClswLjUsICJvIiwgIm8gIl0KWzIuNSwgIm8iLCAid29ybGQhXG5cciJdCg==', player.value,
+    AsciinemaPlayer.create(props.file||'https://asciinema.org/a/332602.cast?dl=1', player.value,
         {
             loop: props.loop??false,
-            theme: theme
+            theme: props.theme??theme,
         });
 });
 </script>
